@@ -1,0 +1,11 @@
+product 스키마 생성후 안에
+
+CREATE TABLE product (
+  id int  unsigned NOT NULL AUTO_INCREMENT,
+  prd_id int unsigned NOT NULL DEFAULT 0,
+  prd_name varchar(255) NOT NULL DEFAULT '',
+  done enum('Y','N') DEFAULT 'N',
+  PRIMARY KEY (id),
+  KEY prd_id (prd_id)
+);
+INSERT INTO product.product (prd_id,prd_name) VALUES (0, 'name test');
