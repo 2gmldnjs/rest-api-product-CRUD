@@ -34,7 +34,7 @@ router.put('/:id', async (req,res)=>{
     res.json(result);
 })
 
-// delete
+// delete 
 router.delete('/:id', async (req,res)=>{
     const result = await productController.delete(req);
     res.json(result);
