@@ -1,7 +1,7 @@
 //제품 curd
 
-const config = require('./config').development;
-const express = require('express');
+const config = require('./config')[process.env.NODE_ENV]; //./config에 있는 development설정으로 구동 
+const express = require('express'); //express moduleimoprt 
 const http = require('http');
 
 const app = express();

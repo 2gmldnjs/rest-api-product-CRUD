@@ -105,7 +105,7 @@ const productController = {
 
   //update
   update: async (req) => {
-    const { id } = req.params; // url /로 들어오는것
+    const { id } = req.params; // url /로 들어오는 파라미터
     const { prd_name, done } = req.body;
     if (isEmpty(id) || isEmpty(prd_name) || isEmpty(done)) {
       return resData(STATUS.E100.result, STATUS.E100.resultDesc, moment().format('LT'));
@@ -131,7 +131,7 @@ const productController = {
 
   //delete
   delete: async (req) => {
-    const { id } = req.params; // url /로 들어오는것
+    const { id } = req.params; // url /로 들어오는 파라미터
     if (isEmpty(id)) {
       return resData(STATUS.E100.result, STATUS.E100.resultDesc, moment().format('LT'));
     }
@@ -162,9 +162,36 @@ const productController = {
     return rows;
   },
 
-  //reset //테이블 삭제, 더미 데이터 추가
+  //reset //테이블 내용 삭제
   reset: async (req) => {
-    const { prd_name, done, len } = req.body; // url /로 들어오는것
+    const { prd_name, done } = req.body; // url /로 들어오는 파라미터
+    console.log(prd_name,done)
+    if (isEmpty(prd_name) || isEmpty(done)) {
+      return resData(STATUS.E100.result, STATUS.E100.resultDesc, moment().format('LT'));
+    }
+    console.log(1)
+    try {
+      const query = `TRUNCATE TABLE ${TABLE.PRODUCT};`; 
+      const values = [prd_name,done];
+      const [rows] = await db.execute(query, values);
+
+      if (rows.affectedRows==1) {
+        return resData(
+          STATUS.E100.result,
+          STATUS.E100.resultDesc,
+          moment().format('LT')
+        );
+      }
+
+    } catch (e) {
+      console.log(e.message);
+      return resData(STATUS.E300.result, STATUS.E300.resultDesc, moment().format('LT'));
+    }
+
+  },
+  //turncate후 dummy 더미 데이터 추가
+  dummy: async (req) => {
+    const { prd_name, done, len } = req.body; // url /로 들어오는 파라미터
     console.log(prd_name,done, len)
     if (isEmpty(prd_name) || isEmpty(len) || isEmpty(done)) {
       return resData(STATUS.E100.result, STATUS.E100.resultDesc, moment().format('LT'));
@@ -195,8 +222,7 @@ const productController = {
       return resData(STATUS.E300.result, STATUS.E300.resultDesc, moment().format('LT'));
     }
 
-  },
-
+},
   
 };
 

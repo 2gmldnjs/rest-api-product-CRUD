@@ -28,9 +28,15 @@ router.delete('/:id', async (req,res)=>{
     res.json(result);
 })
 
-// truncate, dummy insert
+// truncate
 router.post('/reset', async (req,res)=>{
     const result = await productController.reset(req);
+    res.json(result);
+})
+
+//dummy insert
+router.post('/dummy', async (req,res)=>{
+    const result = await productController.dummy(req);
     res.json(result);
 })
 
