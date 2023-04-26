@@ -1,14 +1,16 @@
 //제품 curd
+//모든 플러그인은 app.use()로 설치해 사용한다. 
 
-const config = require('./config')[process.env.NODE_ENV]; //./config에 있는 development설정으로 구동 
+
+const config = require('./config').development; //./config에 있는 development설정으로 구동 
 const express = require('express'); //express moduleimoprt 
-const http = require('http');
+const http = require('http'); //http 프로토콜  사용
 
 const app = express();
-const port = config.PORT;
-const cors = require('cors');
+const port = config.PORT; //devlep안에 port 사용
+const cors = require('cors'); //netword 접근 허용
 
-//body parser
+//body parser 
 app.use(express.json());
 app.use(express.urlencoded({extended : true }));
 
@@ -20,7 +22,7 @@ let corsOptions = {
 app.use(cors(corsOptions));
 
 //autoRouter
-const autoRoute = require('./autoRoute');
+const autoRoute = require('./autoRoute');//router
 autoRoute('/api',app);
 
 //server

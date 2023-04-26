@@ -1,4 +1,4 @@
-const production = {
+const production = {//db 접근 설정
     PORT :3000,
     DB:{
         host:"localhost",

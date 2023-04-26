@@ -1,5 +1,6 @@
-const config = require("../config")[process.env.NODE_ENV];
-const mysql = require("mysql2");
+const config = require("../config")[process.env.NODE_ENV];//config파일 사용
+const mysql = require("mysql2");  //mysql2설치후 사용
+
 
 function createDatabase() {
   let instance = null;

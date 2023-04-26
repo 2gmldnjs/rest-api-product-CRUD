@@ -1,7 +1,7 @@
 const db = require("../../plugins/mysql");
 const TABLE = require("../../util/TABLE");
 const STATUS = require("../../util/STATUS");
-const { resData, currentTime, isEmpty } = require("../../util/lib");
+const { resData, isEmpty } = require("../../util/lib");
 const moment = require("../../util/moment");
 
 //전체 row 갯수
@@ -129,7 +129,7 @@ const productController = {
     console.log('update')
   },
 
-  //delete
+  //delete 하나씩
   delete: async (req) => {
     const { id } = req.params; // url /로 들어오는 파라미터
     if (isEmpty(id)) {
@@ -189,7 +189,7 @@ const productController = {
     }
 
   },
-  //turncate후 dummy 더미 데이터 추가
+  //turncate후 dummy 더미 데이터 추가 len인자 길이만큼
   dummy: async (req) => {
     const { prd_name, done, len } = req.body; // url /로 들어오는 파라미터
     console.log(prd_name,done, len)

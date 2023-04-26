@@ -1,4 +1,4 @@
-const TABLE = {
+const TABLE = { //table db 이름
     PRODUCT: "product",
   };
 

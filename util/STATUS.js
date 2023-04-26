@@ -1,4 +1,4 @@
-const STATUS = {
+const STATUS = {//오류상태
     S200 :{result : 200, resultDesc:"Success",}, // 성공
 		S201 :{result : 201, resultDesc:"데이터 없음"},
 		E100 :{result : -100, resultDesc:"필수 파라메터 에러"},
